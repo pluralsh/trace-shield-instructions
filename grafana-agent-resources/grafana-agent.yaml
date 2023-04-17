@@ -1,0 +1,28 @@
+apiVersion: monitoring.grafana.com/v1alpha1
+kind: GrafanaAgent
+metadata:
+  name: grafana-agent
+  namespace: grafana-agent
+spec:
+  disableReporting: false
+  disableSupportBundle: false
+  enableConfigReadAPI: false
+  image: grafana/agent:v0.31.3
+  logFormat: logfmt
+  logLevel: info
+  logs:
+    instanceSelector:
+      matchLabels:
+        app.kubernetes.io/instance: grafana-agent
+        app.kubernetes.io/name: grafana-agent-logs
+  metrics:
+    externalLabels:
+      cluster: <workload-cluster-name>
+    instanceNamespaceSelector: {}
+    instanceSelector:
+      matchLabels:
+        app.kubernetes.io/instance: grafana-agent
+        app.kubernetes.io/name: grafana-agent-metrics
+    scrapeInterval: 15s
+  serviceAccountName: grafana-agent
+  version: v0.31.3

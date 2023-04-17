@@ -1,0 +1,28 @@
+mutation{
+  createObservabilityTenant(
+    id: "<tenant-name>"
+    limits: {
+      mimir: {
+        ingestionRate: 40000
+      }
+    }
+    metricsWriters: {
+      oauth2Clients: [
+        "<client-id-for-tenant>"
+      ]
+    }
+  ){
+    id
+    limits{
+      mimir{
+        ingestionRate
+      }
+    }
+    metricsWriters{
+      oauth2Clients{
+        clientId
+        clientName
+      }
+    }
+  }
+}

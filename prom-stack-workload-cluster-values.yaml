@@ -1,0 +1,14 @@
+alertmanager:
+  enabled: false
+grafana:
+  enabled: false
+  forceDeployDashboards: true
+  sidecar:
+    dashboards:
+      annotations:
+        k8s-sidecar-target-directory: /tmp/dashboards/Kubernetes
+prometheus:
+  enabled: false
+  prometheusSpec:
+    externalLabels:
+      cluster: <workload-cluster-name>

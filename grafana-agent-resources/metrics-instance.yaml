@@ -1,0 +1,29 @@
+apiVersion: monitoring.grafana.com/v1alpha1
+kind: MetricsInstance
+metadata:
+  name: grafana-agent
+  namespace: grafana-agent
+spec:
+  podMonitorNamespaceSelector: {}
+  podMonitorSelector: {}
+  probeNamespaceSelector: {}
+  probeSelector: {}
+  serviceMonitorNamespaceSelector: {}
+  serviceMonitorSelector: {}
+  remoteWrite: # one remote write for each tenant
+  - name: <tenant-name>
+    url: http://<mimir-public-hostname>/api/v1/push
+    writeRelabelConfigs: # TODO: figure out which config will allow for dropping everything except a given namespace (for a tenant)
+    - sourceLabels:
+      - namespace
+      regex: <namespaces-to-drop>
+      action: drop
+    oauth2:
+      clientId:
+        secret:
+          name: <name-of-secret-with-client-id-and-secret>
+          key: <key-in-secret-with-client-id>
+      clientSecret:
+        name: <name-of-secret-with-client-id-and-secret>
+        key: <key-in-secret-with-client-secret>
+      tokenUrl: https://<trace-shield-hydra-hostname>/oauth2/token
