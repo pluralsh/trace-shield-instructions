@@ -16,8 +16,8 @@ spec:
     writeRelabelConfigs: # TODO: figure out which config will allow for dropping everything except a given namespace (for a tenant)
     - sourceLabels:
       - namespace
-      regex: <namespaces-to-drop>
-      action: drop
+      regex: <tenant-name>
+      action: keep
     oauth2:
       clientId:
         secret:
