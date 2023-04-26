@@ -3,6 +3,9 @@ kind: MetricsInstance
 metadata:
   name: grafana-agent
   namespace: grafana-agent
+  labels:
+    app.kubernetes.io/instance: grafana-agent
+    app.kubernetes.io/name: grafana-agent-metrics
 spec:
   podMonitorNamespaceSelector: {}
   podMonitorSelector: {}
