@@ -7,7 +7,7 @@ spec:
   disableReporting: false
   disableSupportBundle: false
   enableConfigReadAPI: false
-  image: grafana/agent:v0.31.3
+  image: grafana/agent:v0.34.1
   logFormat: logfmt
   logLevel: info
   logs:
@@ -25,4 +25,4 @@ spec:
         app.kubernetes.io/name: grafana-agent-metrics
     scrapeInterval: 15s
   serviceAccountName: grafana-agent
-  version: v0.31.3
+  version: v0.34.1

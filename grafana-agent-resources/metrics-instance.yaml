@@ -16,7 +16,7 @@ spec:
   remoteWrite: # one remote write for each tenant
   - name: <tenant-name>
     url: http://<mimir-public-hostname>/api/v1/push
-    writeRelabelConfigs: # TODO: figure out which config will allow for dropping everything except a given namespace (for a tenant)
+    writeRelabelConfigs:
     - sourceLabels:
       - namespace
       regex: <tenant-name>

@@ -1,0 +1,27 @@
+apiVersion: monitoring.grafana.com/v1alpha1
+kind: LogsInstance
+metadata:
+  labels:
+    app.kubernetes.io/instance: grafana-agent
+    app.kubernetes.io/name: grafana-agent-logs
+  name: grafana-agent-<tenant-name>
+  namespace: grafana-agent
+spec:
+  clients:
+    - externalLabels:
+        cluster: <workload-cluster-name>
+      tenantId: <tenant-name>
+      url: https://<loki-public-hostname>/loki/api/v1/push
+      oauth2:
+        clientId:
+          secret:
+            key: <key-in-secret-with-client-id>
+            name: <name-of-secret-with-client-id-and-secret>
+        clientSecret:
+          key: <key-in-secret-with-client-secret>
+          name: <name-of-secret-with-client-id-and-secret>
+        tokenUrl: https://<trace-shield-hydra-hostname>/oauth2/token
+  podLogsNamespaceSelector: {}
+  podLogsSelector:
+    matchLabels:
+      app.kubernetes.io/name: grafana-agent-<tenant-name>

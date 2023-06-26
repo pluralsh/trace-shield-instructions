@@ -11,6 +11,11 @@ mutation{
         "<client-id-for-tenant>"
       ]
     }
+    logsWriters: {
+      oauth2Clients: [
+        "<client-id-for-tenant>"
+      ]
+    }
   ){
     id
     limits{
@@ -19,6 +24,12 @@ mutation{
       }
     }
     metricsWriters{
+      oauth2Clients{
+        clientId
+        clientName
+      }
+    }
+    logsWriters{
       oauth2Clients{
         clientId
         clientName

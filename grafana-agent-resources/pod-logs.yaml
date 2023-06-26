@@ -1,0 +1,15 @@
+apiVersion: monitoring.grafana.com/v1alpha1
+kind: PodLogs
+metadata:
+  labels:
+    app.kubernetes.io/name: grafana-agent-<tenant-name>
+  name: grafana-agent-<tenant-name>
+  namespace: grafana-agent
+spec:
+  namespaceSelector:
+    matchNames:
+      - <tenant-name>
+  pipelineStages:
+    - docker: {}
+  selector:
+    matchLabels: {}
